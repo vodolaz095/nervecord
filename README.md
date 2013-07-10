@@ -1,4 +1,4 @@
-hord
+nervecord
 ====
 
-The hord nervous system for nodeJS application, redis backended.
+The cord nervous system for nodeJS application, redis backended.

@@ -1,0 +1,30 @@
+{
+  "name": "nervecord",
+  "version": "0.0.1",
+  "description": "The cord nervous system for nodeJS application, redis backended.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vodolaz095/nervecord.git"
+  },
+  "keywords": [
+    "redis",
+    "task",
+    "queue"
+  ],
+  "dependencies":{
+    "redis":"*"
+  },
+  "devDependencies":{
+   "vows":"*"
+  }
+  "author": "Anatolij Ostoumov",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/vodolaz095/nervecord/issues"
+  }
+}

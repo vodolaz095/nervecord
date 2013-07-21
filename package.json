@@ -4,7 +4,7 @@
   "description": "The cord nervous system for nodeJS application, redis backended.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/vows --spec tests/*"
   },
   "repository": {
     "type": "git",
@@ -16,13 +16,18 @@
     "queue"
   ],
   "dependencies":{
-    "redis":"*"
+    "redis": "*",
+    "hat": "*",
+    "async":"*"
   },
   "devDependencies":{
-   "vows":"*"
-  }
+    "vows": "*"
+  },
+  "optionalDependencies":{
+    "hiredis": "*"
+  },
   "author": "Anatolij Ostoumov",
-  "license": "BSD",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/vodolaz095/nervecord/issues"

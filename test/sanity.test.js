@@ -63,5 +63,11 @@ describe('NerveCord - sanity',function(){
       worker.start.should.be.a('function');
     });
   });
+  
+  describe('new NerveCord(config) throws errors on bad config',function(){
+    it('throws errors when config is not an object');  
+    it('throws errors when config.port is not an integer');  
+    it('throws errors when config.redisUrl is bad');  
+  });  
 
 });

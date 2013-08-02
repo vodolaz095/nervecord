@@ -1,38 +1,60 @@
-var nervecord = require('./index.js');
+var NerveCord = require('./../index.js');
 
-var g = nervecord.createGanglia();
-
-g.on('task_done',function(taskId){
-	console.log('task_done '+taskId);	
-});
-g.on('new_task',function(taskId){
-	console.log('new_task '+taskId);	
+var cluster = new NerveCord({
+  'host': 'localhost',
+  'port': 6379,
+  'prefix': 'nervecord'
 });
 
-var a = nervecord.createAppendage('zopa',function(jobId,payload,done){
-	setTimeout(function(){
-		console.log('>>===worker=====');
-		console.log('Starting work on '+jobId);
-		console.log('Job payload is ');
-		console.log(payload);
-		console.log('=====worker===<<');
-		done(null,'OK');
-	},500);
+////////////////
+
+var workerSum = cluster.createWorker('sum', function (payload, done) {
+  setTimeout(function () {
+    done(null, (0 + payload.a + payload.b));
+  }, (Math.random() * 1000));
+
+});
+workerSum.on('start_job',function(jobId){
+  console.log('Worker_sum starts job '+jobId)
 });
 
-//*
-console.log('creating task');
-//g.createTask
-//g.waitForTask
-setTimeout(function(){
-	g.createTaskAndWait('zopa',{'la':'la'},function(err,job){
-		if(err) throw err;
-		console.log('Job done?');
-		console.log(job);
-		process.exit(0);
-	});
-},500);	
-//*/
+workerSum.on('complete_job',function(jobId){
+  console.log('Worker_sum completes job '+jobId)
+});
+workerSum.start();
 
-//todo - locks for workers
-//worker name or from hat
+////////////////
+
+var workerMul = cluster.createWorker('mul', function (payload, done) {
+  setTimeout(function () {
+    done(null, (0 + payload.a * payload.b));
+  }, (Math.random() * 1000));
+});
+workerSum.on('start_job',function(jobId){
+  console.log('Worker_mul starts job '+jobId)
+});
+
+workerSum.on('complete_job',function(jobId){
+  console.log('Worker_mul completes job '+jobId)
+});
+workerMul.start();
+
+////////////////
+
+var master = cluster.createMaster();
+setInterval(function () {
+
+  master.createTaskAndWait('sum', {a: 2, b: 3}, function (err, jobDone) {
+    if (err) {
+      throw err;
+    }
+    console.log(jobDone);
+  });
+
+  master.createTaskAndWait('mul', {a: 2, b: 3}, function (err, jobDone) {
+    if (err) {
+      throw err;
+    }
+    console.log(jobDone);
+  });
+}, 1000);

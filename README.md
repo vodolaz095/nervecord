@@ -67,3 +67,14 @@ Example
     }, 1000);
 
 ```
+
+
+Test
+=========
+
+[![Build Status](https://travis-ci.org/vodolaz095/nervecord.png?branch=master)](https://travis-ci.org/vodolaz095/nervecord)
+```
+    $ npm install should
+    $ npm install mocha
+    $ npm test
+```

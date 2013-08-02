@@ -6,5 +6,8 @@ var should = require('should'),
 
 describe('NerveCord - worker',function(){
 
-
+  it('have to throw errors for invalid channel name');
+  it('have to throw errors for invalid action function');
+  it('have to read corresponding list at least every second');
+  it('have to listen to incoming message');
 });

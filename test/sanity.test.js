@@ -58,6 +58,10 @@ describe('NerveCord - sanity',function(){
     it('has a function on',function(){
       worker.on.should.be.a('function');
     });
+
+    it('has a function start',function(){
+      worker.start.should.be.a('function');
+    });
   });
 
 });

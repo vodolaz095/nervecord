@@ -31,10 +31,9 @@ describe('NerveCord - worker',function(){
 
       async.parallel([
         function(cb){ //creating job
-
-        },
+          redisClient.hset('nervecord_task_111','payload','111',cb);
         function(cb){ //queing job
-
+          redisClient.rpush('nervecord_test_tasks','nervecord_task_111',cb);
         }
       ]);
     });
@@ -42,5 +41,5 @@ describe('NerveCord - worker',function(){
     it('listens to messages');
      
   });
-  //*/
+//*/
 });

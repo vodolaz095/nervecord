@@ -37,7 +37,9 @@ describe('NerveCord - sanity',function(){
   });
 
   describe('worker',function(){
-    var worker = nerve.createWorker('test',function(payload,done){done(null,payload);});
+    var worker = nerve.createWorker('test', function(payload, done){
+      done(null,payload);
+    });
 
     it('has a function getTask',function(){
       worker.getTask.should.be.a('function');
@@ -63,12 +65,19 @@ describe('NerveCord - sanity',function(){
       worker.start.should.be.a('function');
     });
   });
-  
+
   describe('new NerveCord(config) throws errors on bad config',function(){
-    it('throws errors when config is not an object');  
-    it('throws errors when config is not parseble redisUrl'); 
-    it('throws errors when config.port is not an integer');  
-    
-  });  
+    it('throws errors when config.port is not an integer',function(){
+      (function () {
+        var badNerve = new NerveCord({port:'not a port'});
+      }).should.throw('Error in Nervecord config!');  
+    });
+
+    it('throws errors when config is not parseable redisUrl',function(){
+      (function () {
+        var badNerve = new NerveCord('I am pineapple!');
+      }).should.throw('Error in Nervecord config!');  
+    });
+  });
 
 });

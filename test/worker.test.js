@@ -16,7 +16,4 @@ describe('NerveCord - worker',function(){
      cluster.createWorker('someChannel');
    }).should.throw('action have to be a "function(payload,done)"!');
   });
-
-  it('have to listen to incoming message');
-  it('have to read corresponding list at least every second');
 });

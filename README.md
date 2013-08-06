@@ -38,11 +38,11 @@ Example
         done(null, (0 + payload.a * payload.b));
       }, (Math.random() * 1000));
     });
-    workerSum.on('start_job',function(jobId){
+    workerMul.on('start_job',function(jobId){
       console.log('Worker_mul starts job '+jobId)
     });
 
-    workerSum.on('complete_job',function(jobId){
+    workerMul.on('complete_job',function(jobId){
       console.log('Worker_mul completes job '+jobId)
     });
     workerMul.start();

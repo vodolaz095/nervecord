@@ -17,5 +17,30 @@ describe('NerveCord - worker',function(){
    }).should.throw('action have to be a "function(payload,done)"!');
   });
   it('have to read corresponding list at least every second');
+
   it('have to listen to incoming message');
+/*/
+  describe('have to listen to incoming message',function(){
+    var payload;
+    before(function(done){
+      cluster.createWorker('test',function(p,d){
+        payload=p;
+        d();
+        done();
+      });
+
+      async.parallel([
+        function(cb){ //creating job
+
+        },
+        function(cb){ //queing job
+
+        }
+      ]);
+    });
+
+    it('listens to messages');
+     
+  });
+  //*/
 });

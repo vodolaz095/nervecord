@@ -51,10 +51,7 @@ describe('NerveCord - in action',function(){
     startJobId.should.be.equal(job.id);
   });
 
-  it('worker emits event that he complete processing task issued',function(){
+  it('worker emits event that he completed processing task issued',function(){
     completeJobId.should.be.equal(job.id);
   });
-
-
-
 });

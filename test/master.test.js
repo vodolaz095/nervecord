@@ -106,7 +106,8 @@ describe('NerveCord - master', function () {
     });
 
     it('returns the null', function () {
-      should.not.exist(taskReturned);
+      should.ok(taskReturned === null);
+      //should.not.exist(taskReturned);
     });
   });
 

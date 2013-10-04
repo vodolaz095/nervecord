@@ -61,9 +61,6 @@ describe('NerveCord - sanity',function(){
       worker.on.should.be.a('function');
     });
 
-    it('has a function start',function(){
-      worker.start.should.be.a('function');
-    });
   });
 
   describe('new NerveCord(config) throws errors on bad config',function(){

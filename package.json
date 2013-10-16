@@ -1,6 +1,6 @@
 {
   "name": "nervecord",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Failproof task queue, redis backended, inspired by nervous system of nemathods",
   "main": "index.js",
   "scripts": {
@@ -26,7 +26,7 @@
   },
   "devDependencies":{
     "mocha": "*",
-    "should": "*"
+    "should": "2.x"
   },
   "optionalDependencies":{
     "hiredis": "*"

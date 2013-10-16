@@ -33,7 +33,7 @@ describe('NerveCord - master', function () {
     });
 
     it('returns the correct taskId', function () {
-      taskCreatedId.should.be.a('string');
+      taskCreatedId.should.be.a.String;
       taskCreatedId.length.should.be.above(16);
     });
 
@@ -84,7 +84,7 @@ describe('NerveCord - master', function () {
     });
 
     it('returns the correct task', function () {
-      taskReturned.should.be.a('object');
+      taskReturned.should.be.an.Object;
       var tenSecondsAgo = new Date().getTime() - 10000;
       taskReturned.startedAt.should.be.above(tenSecondsAgo);
       taskReturned.channel.should.be.equal('Test');

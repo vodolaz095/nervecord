@@ -35,6 +35,11 @@ describe('NerveCord - in action',function(){
 
   });
 
+  it('workerSum have proper events', function(){
+    workerSum._events.start_job.should.exist;
+    workerSum._events.complete_job.should.exist;
+  });
+
   it('master issues message and waits for it completion',function(){
     var tenSecondsAgo = new Date().getTime() - 10000;
     job.channel.should.equal('sum');

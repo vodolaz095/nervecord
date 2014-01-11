@@ -78,3 +78,7 @@ Test
     $ npm install mocha
     $ npm test
 ```
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/vodolaz095/nervecord/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

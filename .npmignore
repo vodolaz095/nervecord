@@ -1,6 +1,6 @@
 Makefile
 doc/
-examples/
+example/
 test/
 
 # Mac OS X

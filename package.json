@@ -1,6 +1,6 @@
 {
   "name": "nervecord",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Failproof task queue, redis backended, inspired by nervous system of nemathods",
   "main": "index.js",
   "scripts": {

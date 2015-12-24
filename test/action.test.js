@@ -1,8 +1,11 @@
-var should = require('should'),
+'use strict';
+
+var
+  should = require('should'),
   async = require('async'),
   NerveCord = require('./../index.js');
 
-describe('NerveCord - in action',function(){
+describe('NerveCord - in action', function () {
   var cluster = new NerveCord();
   var master = cluster.createMaster();
   var workerSum = cluster.createWorker('sum', function (payload, done) {
@@ -12,16 +15,16 @@ describe('NerveCord - in action',function(){
 
   });
 
-  var startJobId,completeJobId,job;
+  var startJobId, completeJobId, job;
 
 
-  before(function(done){
-    workerSum.on('start_job',function(jobId){
-      startJobId=jobId;
+  before(function (done) {
+    workerSum.on('start_job', function (jobId) {
+      startJobId = jobId;
     });
 
-    workerSum.on('complete_job',function(jobId){
-      completeJobId=jobId;
+    workerSum.on('complete_job', function (jobId) {
+      completeJobId = jobId;
     });
     workerSum.start();
 
@@ -29,18 +32,18 @@ describe('NerveCord - in action',function(){
       if (err) {
         throw err;
       }
-      job=jobDone;
+      job = jobDone;
       done();
     });
 
   });
 
-  it('workerSum have proper events', function(){
+  it('workerSum have proper events', function () {
     workerSum._events.start_job.should.exist;
     workerSum._events.complete_job.should.exist;
   });
 
-  it('master issues message and waits for it completion',function(){
+  it('master issues message and waits for it completion', function () {
     var tenSecondsAgo = new Date().getTime() - 10000;
     job.channel.should.equal('sum');
     job.result.should.equal('5');
@@ -52,11 +55,11 @@ describe('NerveCord - in action',function(){
     job.worker.should.match(/^sum_worker_/);
   });
 
-  it('worker emits event that he starts processing task issued',function(){
+  it('worker emits event that he starts processing task issued', function () {
     startJobId.should.be.equal(job.id);
   });
 
-  it('worker emits event that he completed processing task issued',function(){
+  it('worker emits event that he completed processing task issued', function () {
     completeJobId.should.be.equal(job.id);
   });
 });

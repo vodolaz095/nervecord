@@ -1,4 +1,7 @@
-var should = require('should'),
+'use strict';
+
+var
+  should = require('should'),
   async = require('async'),
   NerveCord = require('./../index.js'),
   redisClientListener = require('redis').createClient(),
@@ -41,32 +44,31 @@ describe('NerveCord - master', function () {
       messageSent.should.be.equal('new_task:' + taskCreatedId);
     });
 
-    describe('it correctly populates the redis db',function(){
+    describe('it correctly populates the redis db', function () {
       var data;
       before(function (done) {
-      async.parallel(
-        {
-          'taskId_in_tasks':function(cb){
-            redisClient.llen('nervecord_Test_tasks',cb);
-          },
-          'taskId_in_logs':function(cb){
-            redisClient.zrangebyscore('nervecord_Test_log','-inf','+inf',cb);
-          }
-        },function(err,info){
-          if(err) throw err;
-          data=info;
-          done();
-        });
+        async.parallel(
+          {
+            'taskId_in_tasks': function (cb) {
+              redisClient.llen('nervecord_Test_tasks', cb);
+            },
+            'taskId_in_logs': function (cb) {
+              redisClient.zrangebyscore('nervecord_Test_log', '-inf', '+inf', cb);
+            }
+          }, function (err, info) {
+            if (err) throw err;
+            data = info;
+            done();
+          });
       });
 
-      it('adds only one task to list of current tasks',function(){
+      it('adds only one task to list of current tasks', function () {
         data.taskId_in_tasks.should.be.equal(1);
       });
 
-      it('adds task to the log',function(){
+      it('adds task to the log', function () {
         data.taskId_in_logs.should.be.eql([taskCreatedId]);
       });
-
 
 
     });
@@ -120,7 +122,8 @@ describe('NerveCord - master', function () {
         },
         'delete tasks': function (cb) {
           redisClient.del('nervecord_Test_tasks', cb);
-        }},
+        }
+      },
       done);
   });
 
